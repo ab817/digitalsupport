@@ -2,13 +2,13 @@
 
 {% block content %}
 <style>
-    body {
+   body {
         font-family: "Roboto", sans-serif;
-        font-size: 18px;
+        font-size: 16px; /* Decrease the base font size */
         background-color: #fdfdfd;
     }
 
-   .head_text{
+   .head_text {
         color: white;
     }
 
@@ -23,6 +23,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        font-size: 14px; /* Adjust button font size */
     }
 
    .btn-filter:hover {
@@ -34,6 +35,41 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
+        font-size: 14px; /* Adjust select font size */
+    }
+
+   .highlight-section {
+        background-color: #00753a;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        color: white;
+        text-align: center; /* Center align text */
+    }
+
+   .highlight-section h4 {
+        color: white;
+        margin-bottom: 5px;
+        font-size: 22px; /* Adjust heading font size */
+    }
+
+   .highlight-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    }
+
+   .highlight-card a {
+        color: #00753a;
+        font-weight: bold;
+        font-size: 16px; /* Adjust link font size */
+    }
+
+   .highlight-card p {
+        color: #333;
+        font-size: 14px; /* Adjust paragraph font size */
     }
 </style>
 
@@ -55,25 +91,31 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-        <div class="card mb-4">
-            <div class="card-body">
 
-                <form action="" method="get">
-                    <select name="category" id="category" class="select-category">
-                        <option value="">Select a category</option>
-                        {% for category in categories %}
-                            <option value="{{ category.name }}">{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit" class="btn-filter" style="margin-top: 10px;">Filter</button>
-                </form>
+            <!-- Highlighted Current Posts Section -->
+            <div class="highlight-section">
+                <h4>Current Issues</h4>
+                {% for post in current_posts %}
+                    <div class="highlight-card">
+                        <h4><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h4>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="{% url 'search_all' %}" method="post">
+                        {% csrf_token %}
+                        <input type="search" name="searched" placeholder="Search..." class="form-control">
+                        <button type="submit" class="btn-filter" style="margin-top: 10px;">Search</button>
+                    </form>
+                </div>
+            </div>
 
             {% for post in posts %}
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
+                        <h4><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h4>
                         <small>
                             {{ post.created_on.date }} | Categories:
                             {% for category in post.categories.all %}
@@ -82,7 +124,7 @@
                                 </a>
                             {% endfor %}
                         </small>
-                        <p>{{ post.body | slice:":400" }}...</p>
+                        <p>{{ post.body | slice:":90" | safe }}...</p>
                     </div>
                 </div>
             {% endfor %}

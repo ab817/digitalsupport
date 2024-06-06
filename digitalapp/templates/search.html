@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 <style>
@@ -72,29 +72,9 @@
         font-size: 14px; /* Adjust paragraph font size */
     }
 
-    .post-title {
-        font-size: 24px; /* Adjust post title font size */
+    .search-results h3 {
+        font-size: 24px;
         margin-bottom: 20px;
-    }
-
-    .post-meta {
-        font-size: 14px; /* Adjust post meta font size */
-        margin-bottom: 20px;
-    }
-
-    .post-body {
-        font-size: 16px; /* Adjust post body font size */
-        line-height: 1.6; /* Improve readability */
-    }
-
-    .card-header {
-        background-color: #00753a;
-        color: white;
-        font-size: 18px; /* Adjust card header font size */
-    }
-
-    .list-group-item a {
-        color: #00753a;
     }
 </style>
 
@@ -113,48 +93,41 @@
 
 <div class="container">
     <div class="row">
-        <!-- Blog Post Column -->
-        <div class="col-md-8 mt-3">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="post-title">{{ post.title }}</h2>
-                    <small class="text-muted post-meta">
-                        {{ post.created_on.date }} |
-                        Categories:
-                        {% for category in post.categories.all %}
-                            <a href="{% url 'blog_category' category.name %}">
-                                {{ category.name }}
-                            </a>
-                            {% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                    </small>
-                    <p class="post-body">{{ post.body | safe }}</p>
+                    <form action="{% url 'search_all' %}" method="post">
+                        {% csrf_token %}
+                        <input type="search" name="searched" placeholder="Search..." class="form-control">
+                        <button type="submit" class="btn-filter" style="margin-top: 10px;">Search</button>
+                    </form>
                 </div>
+            </div>
+
+            <div class="search-results">
+                {% if searched %}
+                    <h3>You Searched For "{{ searched }}"</h3>
+                    <br/>
+                    {% for post in posts %}
+                        <div class="highlight-card">
+                            <h4><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h4>
+                            <p>{{ post.body | slice:":90" | safe }}...</p>
+                        </div>
+                    {% empty %}
+                        <p>No results found for "{{ searched }}".</p>
+                    {% endfor %}
+                {% else %}
+                    <h3>Hey! You forgot to search for a question...</h3>
+                {% endif %}
             </div>
         </div>
-
-        <!-- Sidebar Widgets Column
-        <div class="col-md-4">
-            <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        {% for category in categories %}
-                            <li class="list-group-item">
-                                <a href="{% url 'blog_category' category.name %}">
-                                    {{ category.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>-->
 
         {% block sidebar %}
         {% include 'sidebar.html' with categories=categories %}
         {% endblock sidebar %}
+
     </div>
 </div>
-
 {% endblock %}
