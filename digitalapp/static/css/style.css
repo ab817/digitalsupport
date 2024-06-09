@@ -1,0 +1,138 @@
+/* Existing CSS from base.html */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    background-color: #fdfdfd;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.shadow {
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.1);
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #f00000;
+    border-color: #dc281e;
+}
+
+.masthead {
+    background: #00753a;
+    height: auto;
+    width: auto;
+    padding-bottom: 15px;
+    box-shadow: 0 16px 48px #E3E7EB;
+    padding-top: 10px;
+}
+
+.navbar-brand img {
+    height: 60px; /* Set the height of the logo */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.custom-footer-bg {
+    background-color: #7e1418;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* New CSS from index.html and detail.html */
+.head_text {
+    color: white;
+}
+
+.card {
+    box-shadow: 0 16px 48px #E3E7EB;
+}
+
+.btn-filter {
+    background-color: #00753a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust button font size */
+}
+
+.btn-filter:hover {
+    background-color: #3e8e41;
+}
+
+.select-category {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 14px; /* Adjust select font size */
+}
+
+.highlight-section {
+    background-color: #00753a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center; /* Center align text */
+}
+
+.highlight-section h4 {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 22px; /* Adjust heading font size */
+}
+
+.highlight-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-card a {
+    color: #00753a;
+    font-weight: bold;
+    font-size: 16px; /* Adjust link font size */
+}
+
+.highlight-card p {
+    color: #333;
+    font-size: 14px; /* Adjust paragraph font size */
+}
+
+.post-title {
+    font-size: 24px; /* Adjust post title font size */
+    margin-bottom: 20px;
+}
+
+.post-meta {
+    font-size: 14px; /* Adjust post meta font size */
+    margin-bottom: 20px;
+}
+
+.post-body {
+    font-size: 16px; /* Adjust post body font size */
+    line-height: 1.6; /* Improve readability */
+}
+
+.card-header {
+    background-color: #00753a;
+    color: white;
+    font-size: 18px; /* Adjust card header font size */
+}
+
+.list-group-item a {
+    color: #00753a;
+}
