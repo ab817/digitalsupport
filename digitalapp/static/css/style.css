@@ -47,7 +47,7 @@ footer {
     width: 100%;
 }
 
-/* New CSS from index.html and detail.html */
+/* New CSS from index.html, detail.html, and search.html */
 .head_text {
     color: white;
 }
@@ -135,4 +135,9 @@ footer {
 
 .list-group-item a {
     color: #00753a;
+}
+
+.search-results h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
