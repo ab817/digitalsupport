@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vx2@(^pm288o-ed*)ls)=-&jbf$6zy!l$h^@(klk$-ids-*+=^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['192.16.15.131']
 
 #LOGIN_REDIRECT_URL = '/'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -78,6 +78,8 @@ WSGI_APPLICATION = 'digital.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+
 
 DATABASES = {
     'default': {

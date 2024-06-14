@@ -1,5 +1,5 @@
 # blog/views.py
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -9,21 +9,28 @@ from .models import Post, Comment, Category
 def search(request):
     posts = Post.objects.all()
     categories = Category.objects.all()
+    searched = None
+    paginated_posts = None
+
     if request.method == "POST":
         searched = request.POST['searched']
-        posts = Post.objects.filter(title__icontains = searched)
-        return render(request, 'search.html', {'posts': posts, 'categories': categories, 'searched':searched})
-    else:
-        return render(request, 'search.html', {'posts': posts, 'categories': categories})
-    """
-    q = request.GET.get('q')
-    if q:
-        posts = posts.filter(title__icontains=q) | posts.filter(body__icontains=q)
+        posts = Post.objects.filter(title__icontains=searched)
 
-    category = request.GET.get('category')
-    if category:
-        posts = posts.filter(categories__name=category)
-    """
+        paginator = Paginator(posts, 5)  # Show 5 posts per page
+        page = request.GET.get('page')
+
+        try:
+            paginated_posts = paginator.page(page)
+        except PageNotAnInteger:
+            paginated_posts = paginator.page(1)
+        except EmptyPage:
+            paginated_posts = paginator.page(paginator.num_pages)
+
+    return render(request, 'search.html', {
+        'posts': paginated_posts,
+        'categories': categories,
+        'searched': searched
+    })
 
 
 def blog_index(request):
@@ -31,9 +38,15 @@ def blog_index(request):
     categories = Category.objects.all()
     current_posts = Post.objects.filter(categories__name='Current')[:2]
 
-    category_name = request.GET.get('category')
-    if category_name:
-        posts = posts.filter(categories__name__contains=category_name)
+    paginator = Paginator(posts, 5)  # Show 5 posts per page
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
     context = {
         "posts": posts,
@@ -42,12 +55,24 @@ def blog_index(request):
     }
     return render(request, "index.html", context)
 
+
 def blog_category(request, category):
     posts = Post.objects.filter(
         categories__name__contains=category
     ).order_by("-created_on")
     categories = Category.objects.all()
     current_posts = Post.objects.filter(categories__name='Current')[:2]
+
+    paginator = Paginator(posts, 5)  # Show 5 posts per page
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     context = {
         "category": category,
         "posts": posts,
@@ -79,3 +104,4 @@ def blog_view(request):
         'categories': categories,
     })
 """
+
