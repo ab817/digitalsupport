@@ -105,3 +105,5 @@ def blog_view(request):
     })
 """
 
+def portal(request):
+    return render(request, 'portal.html')
