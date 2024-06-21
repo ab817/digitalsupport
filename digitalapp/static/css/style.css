@@ -41,6 +41,13 @@ body {
     flex: 1;
 }
 
+.content-wrapper h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 28px;
+}
+
+
 footer {
     position: relative;
     bottom: 0;

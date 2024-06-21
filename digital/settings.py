@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'digitalapp',
     'ckeditor',
     'ckeditor_uploader',
+    'digitalcontact',
 ]
 
 MIDDLEWARE = [

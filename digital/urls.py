@@ -22,4 +22,5 @@ urlpatterns = [
     #path('', include('admin_material.urls')),
     path('admin/', admin.site.urls),
     path("", include("digitalapp.urls")),
+    path("", include("digitalcontact.urls")),
 ]
