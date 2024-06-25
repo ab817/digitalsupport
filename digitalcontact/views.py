@@ -1,17 +1,15 @@
 from django.shortcuts import render
 from .models import Contact
 from django.core.paginator import Paginator
-from django.db.models import Q
-
 
 def contact_list(request):
     query = request.GET.get('q')
     if query:
-        contacts = Contact.objects.filter(Q(name__icontains=query) | Q(code__icontains=query))
+        contacts = Contact.objects.filter(name__icontains=query) | Contact.objects.filter(code__icontains=query)
     else:
-        contacts = Contact.objects.all()
+        contacts = Contact.objects.all().order_by('name')
 
-    paginator = Paginator(contacts, 3)  # Show 20 contacts per page
+    paginator = Paginator(contacts, 20)  # 20 contacts per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
