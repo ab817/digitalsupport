@@ -82,23 +82,67 @@
                 padding: 10px 0;
             }
         }
+
+        /* Popup styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 800px;
+            height: 600px;
+            max-width: 1200px;
+            max-height: 1600px;
+            overflow: auto;
+        }
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        .popup-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00753a;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup-content button:hover {
+            background: #005a2a;
+        }
     </style>
+
     <header>
         <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-10 mx-auto text-center">
-                <div class="site-heading">
-                    <h3 class="site-heading my-4 mt-3 text-white">ADBL DIGITAL PORTAL</h3>
+            <div class="row">
+                <div class="col-md-8 col-md-10 mx-auto text-center">
+                    <div class="site-heading">
+                        <h3 class="site-heading my-4 mt-3 text-white">ADBL DIGITAL PORTAL</h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </header>
+
     <section class="info">
         <div class="container">
             <p>Welcome to the <b>Digital Banking Portal</b>. Here you can access various services to enhance your banking experience.</p>
         </div>
     </section>
+
     <section class="grid">
         <div class="container">
             <div class="row">
@@ -127,8 +171,24 @@
                         <a href="{% url 'contact_list' %}">Go To Contact List</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+
+    <!-- Popup HTML -->
+    {% if show_popup %}
+    <div class="popup" id="welcomePopup" style="display: flex;">
+        <div class="popup-content">
+            <img src="{{ popup_image }}" alt="Welcome">
+            <button id="skipButton">Skip</button>
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        // Hide the popup when the skip button is clicked
+        document.getElementById("skipButton").addEventListener("click", function() {
+            document.getElementById("welcomePopup").style.display = "none";
+        });
+    </script>
 {% endblock %}

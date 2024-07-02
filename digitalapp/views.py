@@ -3,7 +3,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 #from django.views.decorators.csrf import csrf_exempt
 
-from .models import Post, Comment, Category
+from .models import Post, Comment, Category, PortalSetting
+
 
 #@csrf_exempt
 def search(request):
@@ -106,4 +107,12 @@ def blog_view(request):
 """
 
 def portal(request):
-    return render(request, 'portal.html')
+    setting = PortalSetting.objects.first()
+    show_popup = setting.show_popup if setting else False
+    popup_image = setting.popup_image.url if setting and setting.popup_image else ''
+    #show_image = setting.show_image if setting else False
+    return render(request, 'portal.html', {
+        'show_popup': show_popup,
+        'popup_image': popup_image,
+       # 'show_image': show_image
+    })

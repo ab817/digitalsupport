@@ -31,3 +31,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.author} on '{self.post}'"
+
+class PortalSetting(models.Model):
+    show_popup = models.BooleanField(default=True)
+    popup_image = models.ImageField(upload_to='popup_images/', blank=True, null=True)
+    #show_image = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "Portal Settings"
