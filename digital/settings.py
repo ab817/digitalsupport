@@ -139,26 +139,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-CKEDITOR_5_UPLOADS = 'uploads/'
-
-CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': [
-            {'name': 'basicstyles', 'items': ['Bold', 'Italic']},
-            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList']},
-            {'name': 'document', 'items': ['Source']}
-        ],
-        'height': '300px',
-        'width': '100%',
-    },
-    'extends': {
-        'toolbar': [
-            {'name': 'basicstyles', 'items': ['Bold', 'Italic']},
-            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList']},
-            {'name': 'document', 'items': ['Source']}
-        ],
-        'height': '300px',
-        'width': '100%',
-    }
-}
