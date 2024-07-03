@@ -1,28 +1,16 @@
 # Python
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 __pycache__/
-*.swp
-*.swo
+*.sw[op]
 .Python
-env/
-.venv/
-.venv/*
-.venv/bin/
-.venv/lib/
-.venv/lib/python*/
 
 # Django
 *.log
 *.pot
-*.py[cod]
 *.sqlite3
 db.sqlite3
-media/
 staticfiles/
-*.py[cod]
-*.coverage
+.coverage
 .coverage.*
 .cache
 coverage.xml
@@ -39,10 +27,11 @@ celerybeat-schedule
 .env
 .env.*
 venv/
-venv/*
-venv/bin/
-venv/lib/
-venv/lib/python*/
+.venv/
+.venv/*
+.venv/bin/
+.venv/lib/
+.venv/lib/python*/
 
 # macOS
 .DS_Store
@@ -71,7 +60,6 @@ $RECYCLE.BIN/
 *.patch
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
@@ -88,8 +76,6 @@ var/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
