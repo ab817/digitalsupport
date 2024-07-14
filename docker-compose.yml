@@ -1,0 +1,43 @@
+services:
+  db:
+    image: mysql:8.0.26
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: biplav
+      MYSQL_DATABASE: devtest
+      MYSQL_USER: pythonapp
+      MYSQL_PASSWORD: passwordapp
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 30s
+      retries: 10
+    networks:
+      - application
+
+  migration:
+    image: devtest:latest
+    profiles: [initialize]
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    command: bash -c "python manage.py makemigrations && python manage.py migrate"
+    networks:
+      - application
+
+  app:
+    image: devtest:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    networks:
+      - application
+
+networks:
+  application:
