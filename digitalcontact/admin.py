@@ -5,10 +5,14 @@ from django import forms
 from django.shortcuts import render
 from django.urls import path
 from django.http import HttpResponseRedirect
-from .models import Contact
+from .models import Contact, TelephoneLine
 import csv
 import io
 
+@admin.register(TelephoneLine)
+class TelephoneLineAdmin(admin.ModelAdmin):
+    list_display = ('category', 'lines')
+    search_fields = ('category', 'lines')
 class CSVUploadForm(forms.Form):
     csv_file = forms.FileField()
 

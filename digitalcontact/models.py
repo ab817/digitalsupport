@@ -10,3 +10,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.code} - {self.name}"
+
+class TelephoneLine(models.Model):
+    category = models.CharField(max_length=100)
+    lines = models.TextField()
+
+    def __str__(self):
+        return self.category

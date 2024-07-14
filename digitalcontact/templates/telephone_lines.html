@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-wrapper container">
+    <h2 style="font-weight: bold;">ADBL Department Contact</h2>
+    <ul>
+        {% for line in telephone_lines %}
+            <li><strong>{{ line.category }}:</strong> {{ line.lines }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
