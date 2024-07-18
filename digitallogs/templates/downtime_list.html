@@ -1,0 +1,33 @@
+<!-- digitallogs/templates/digitallogs/downtime_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Downtime Logs</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>SN</th>
+                <th>Date and Time</th>
+                <th>System/Channel Name</th>
+                <th>Reason</th>
+                <th>Downtime Total Time</th>
+                <th>Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for downtime in downtimes %}
+            <tr>
+                <td>{{ downtime.sn }}</td>
+                <td>{{ downtime.datetime }}</td>
+                <td>{{ downtime.system_channel_name }}</td>
+                <td>{{ downtime.reason }}</td>
+                <td>{{ downtime.downtime_total_time }}</td>
+                <td>{{ downtime.impact }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

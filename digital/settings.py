@@ -21,6 +21,10 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+# settings.py
+
+LOGIN_URL = '/admin/login/'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -35,6 +39,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'django_ckeditor_5',
     'digitalcontact',
+    'digitallogs',
 ]
 
 MIDDLEWARE = [
