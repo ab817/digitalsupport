@@ -4,19 +4,21 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: biplav
-      MYSQL_DATABASE: devtest
-      MYSQL_USER: pythonapp
-      MYSQL_PASSWORD: passwordapp
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: digitalsupport
+      MYSQL_USER: digitalsupport
+      MYSQL_PASSWORD: Digital@support
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 30s
       retries: 10
+    volumes:
+      - ./var/backup/digitalsupport:/var/lib/mysql
     networks:
       - application
 
   migration:
-    image: devtest:latest
+    image: digital_support:latest
     profiles: [initialize]
     depends_on:
       db:
@@ -28,7 +30,7 @@ services:
       - application
 
   app:
-    image: devtest:latest
+    image: digital_support:latest
     depends_on:
       db:
         condition: service_healthy
@@ -36,6 +38,8 @@ services:
       - 8000:8000
     env_file:
       - .env
+    volumes:
+      - ./:/app
     networks:
       - application
 
