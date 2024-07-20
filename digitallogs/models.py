@@ -22,3 +22,24 @@ class Downtime(models.Model):
 
     def __str__(self):
         return f"{self.sn} - {self.system_channel_name}"
+
+class Serveraccess(models.Model):
+    SERVER_CHOICES = [
+        ('Fonepay', 'Fonepay'),
+        ('Esewa', 'Esewa'),
+        ('Khalti', 'Khalti'),
+        ('SMS', 'SMS'),
+        ('Mobile', 'Mobile'),
+        ('Internet', 'Internet'),
+    ]
+
+    sn = models.AutoField(primary_key=True)
+    datetime = models.DateTimeField(auto_now_add=True)
+    server_name = models.CharField(max_length=50, choices=SERVER_CHOICES)
+    purpose = models.TextField()
+    access_by = models.CharField(max_length=255)
+    provided_by = models.CharField(max_length=255)
+    time = models.DurationField()
+
+    def __str__(self):
+        return f"{self.sn} - {self.server_name}"
