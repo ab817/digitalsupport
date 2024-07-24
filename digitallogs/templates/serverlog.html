@@ -1,48 +1,50 @@
-<!-- digitallogs/templates/digitallogs/downtime_list.html -->
+<!-- digitallogs/templates/digitallogs/serverlog.html -->
 
 {% extends 'base.html' %}
 
 {% block content %}
 <div class="container">
-    <h2>Downtime Logs</h2>
-    <a href="{% url 'export_downtimes_csv' %}" class="btn btn-primary mb-3">Export Logs To CSV</a>
+    <h2>Server Access Logs</h2>
+    <a href="{% url 'export_serveraccess_csv' %}" class="btn btn-primary mb-3">Export Logs To CSV</a>
     <a href="{% url 'admin:index' %}" class="btn btn-secondary mb-3" target="_blank">Admin Panel</a>
-    <a href="{% url 'serverlog_list' %}" class="btn btn-secondary mb-3" >Server Log</a>
+    <a href="{% url 'downtime_list' %}" class="btn btn-secondary mb-3">Downtime Log</a>
     <a href="{% url 'technical_log_list' %}" class="btn btn-secondary mb-3" >Support Log</a>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>SN</th>
                 <th>Date and Time</th>
-                <th>System/Channel Name</th>
-                <th>Reason</th>
-                <th>Downtime Total Time</th>
-                <th>Impact</th>
+                <th>Server Name</th>
+                <th>Purpose</th>
+                <th>Access by</th>
+                <th>Provided by</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
-            {% for downtime in downtime_page_obj %}
+            {% for log in serveraccess_page_obj %}
             <tr>
-                <td>{{ downtime.sn }}</td>
-                <td>{{ downtime.datetime }}</td>
-                <td>{{ downtime.system_channel_name }}</td>
-                <td>{{ downtime.reason }}</td>
-                <td>{{ downtime.downtime_total_time }}</td>
-                <td>{{ downtime.impact }}</td>
+                <td>{{ log.sn }}</td>
+                <td>{{ log.datetime }}</td>
+                <td>{{ log.server_name }}</td>
+                <td>{{ log.purpose }}</td>
+                <td>{{ log.access_by }}</td>
+                <td>{{ log.provided_by }}</td>
+                <td>{{ log.time }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            {% if downtime_page_obj.has_previous %}
+            {% if serveraccess_page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?downtime_page=1" aria-label="First">
+                <a class="page-link" href="?serveraccess_page=1" aria-label="First">
                     <span aria-hidden="true">&laquo;&laquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?downtime_page={{ downtime_page_obj.previous_page_number }}" aria-label="Previous">
+                <a class="page-link" href="?serveraccess_page={{ serveraccess_page_obj.previous_page_number }}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -59,22 +61,22 @@
             </li>
             {% endif %}
 
-            {% for num in downtime_page_obj.paginator.page_range %}
-            {% if downtime_page_obj.number == num %}
+            {% for num in serveraccess_page_obj.paginator.page_range %}
+            {% if serveraccess_page_obj.number == num %}
             <li class="page-item active"><a class="page-link">{{ num }}</a></li>
-            {% elif num > downtime_page_obj.number|add:'-3' and num < downtime_page_obj.number|add:'3' %}
-            <li class="page-item"><a class="page-link" href="?downtime_page={{ num }}">{{ num }}</a></li>
+            {% elif num > serveraccess_page_obj.number|add:'-3' and num < serveraccess_page_obj.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?serveraccess_page={{ num }}">{{ num }}</a></li>
             {% endif %}
             {% endfor %}
 
-            {% if downtime_page_obj.has_next %}
+            {% if serveraccess_page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?downtime_page={{ downtime_page_obj.next_page_number }}" aria-label="Next">
+                <a class="page-link" href="?serveraccess_page={{ serveraccess_page_obj.next_page_number }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?downtime_page={{ downtime_page_obj.paginator.num_pages }}" aria-label="Last">
+                <a class="page-link" href="?serveraccess_page={{ serveraccess_page_obj.paginator.num_pages }}" aria-label="Last">
                     <span aria-hidden="true">&raquo;&raquo;</span>
                 </a>
             </li>
