@@ -6,9 +6,8 @@
 <div class="container">
     <h2>Server Access Logs</h2>
     <a href="{% url 'export_serveraccess_csv' %}" class="btn btn-primary mb-3">Export Logs To CSV</a>
-    <a href="{% url 'admin:index' %}" class="btn btn-secondary mb-3" target="_blank">Admin Panel</a>
-    <a href="{% url 'downtime_list' %}" class="btn btn-secondary mb-3">Downtime Log</a>
-    <a href="{% url 'technical_log_list' %}" class="btn btn-secondary mb-3" >Support Log</a>
+    <a href="{% url 'adminpanel' %}" class="btn btn-secondary mb-3" target="_blank">Portal Admin</a>
+    <a href="{% url 'admin:index' %}" class="btn btn-secondary mb-3" target="_blank">Add New Data</a>
     <table class="table table-striped">
         <thead>
             <tr>
