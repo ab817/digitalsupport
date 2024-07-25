@@ -1,9 +1,12 @@
 # blog/views.py
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 #from django.views.decorators.csrf import csrf_exempt
 
-from .models import Post, Comment, Category, PortalSetting
+from .models import Post, Comment, Category, PortalSetting, Feedback
 
 
 #@csrf_exempt
@@ -94,18 +97,6 @@ def blog_detail(request, pk):
 
     return render(request, "detail.html", context)
 
-"""
-def blog_view(request):
-    current_posts = Post.objects.filter(categories__name='Current')[:2]
-    all_posts = Post.objects.all()
-    categories = Category.objects.all()
-    return render(request, 'index.html', {
-        'current_posts': current_posts,
-        'posts': all_posts,
-        'categories': categories,
-    })
-"""
-
 def portal(request):
     setting = PortalSetting.objects.first()
     show_popup = setting.show_popup if setting else False
@@ -116,3 +107,30 @@ def portal(request):
         'popup_image': popup_image,
        # 'show_image': show_image
     })
+
+
+@csrf_protect
+def submit_feedback(request):
+    if request.method == 'POST':
+        feedback_text = request.POST['feedbackText']
+        questioned_by = request.POST['questionedBy']
+
+        # Save the feedback to the database
+        feedback = Feedback(feedback_text=feedback_text, questioned_by=questioned_by)
+        feedback.save()
+
+        # Add a success message
+        messages.success(request, 'Your feedback has been submitted successfully!')
+
+        # Redirect to the same page to display the message in the sidebar
+        return redirect(request.META.get('HTTP_REFERER', 'blog_index'))
+
+    return render(request, 'detail.html')
+
+@login_required
+def faq_feedback(request):
+    feedback_list = Feedback.objects.all().order_by('-submitted_on')  # Order by submission date, latest first
+    paginator = Paginator(feedback_list, 10)  # Show 10 feedbacks per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'faq_feedback.html', {'page_obj': page_obj})

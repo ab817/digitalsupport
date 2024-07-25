@@ -39,3 +39,11 @@ class PortalSetting(models.Model):
 
     def __str__(self):
         return "Portal Settings"
+
+class Feedback(models.Model):
+    feedback_text = models.TextField()
+    questioned_by = models.CharField(max_length=100)
+    submitted_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Feedback by {self.questioned_by} on {self.submitted_on}'

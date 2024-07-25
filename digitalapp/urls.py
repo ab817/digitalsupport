@@ -11,5 +11,7 @@ urlpatterns = [
     path('category/<str:category_name>/', views.blog_category, name='blog_category'),
     path("search", views.search, name="search_all"),
     path("", views.portal, name='portal'),
+    path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
+    path('faq_feedback/', views.faq_feedback, name='faq_feedback'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
