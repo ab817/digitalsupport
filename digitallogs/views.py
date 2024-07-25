@@ -6,6 +6,10 @@ from django.core.paginator import Paginator
 from .models import Downtime, Serveraccess, TechnicalSupportLog
 
 @login_required
+def adminpanel(request):
+    return render(request, 'adminpanel.html')
+
+@login_required
 def downtime_list(request):
     downtimes = Downtime.objects.all().order_by('-datetime')
     #serveraccesses = Serveraccess.objects.all().order_by('-datetime')

@@ -11,7 +11,7 @@ urlpatterns = [
     path("", include("digitalapp.urls")),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     path("", include("digitalcontact.urls")),
-    path("digitallogs/", include("digitallogs.urls")),
+    path("adminpanel/", include("digitallogs.urls")),
 ]
 
 if settings.DEBUG:
