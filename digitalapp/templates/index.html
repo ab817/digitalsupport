@@ -52,7 +52,7 @@
                                 </a>
                             {% endfor %}
                         </small>
-                        <p>{{ post.body | slice:":90" | safe }}...</p>
+                        <p>{{ post.body | safe }}...</p>
                     </div>
                 </div>
             {% endfor %}
@@ -93,13 +93,10 @@
                     {% endif %}
                 </ul>
             </nav>
-
         </div>
-
         {% block sidebar %}
         {% include 'sidebar.html' with categories=categories %}
         {% endblock sidebar %}
-
     </div>
 </div>
 {% endblock %}
