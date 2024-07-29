@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .product-detail-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        background-color: white;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .product-image {
+        width: 192px;
+        height: 192px;
+        margin: auto;
+        border-radius: 8px;
+        object-fit: contain;
+        display: block;
+    }
+
+    .product-description {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #666;
+        text-align: justify;
+    }
+
+    .visit-product-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #00753a;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .visit-product-link:hover {
+        background-color: #005a29;
+    }
+
+    .product-title {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container product-detail-container">
+    <h2 class="text-center product-title">{{ product.name }}</h2>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+    <p class="product-description">{{ product.description }}</p>
+    <!--<a href="{{ product.link }}" target="_blank" class="visit-product-link">Visit Product</a>-->
+</div>
+{% endblock content %}

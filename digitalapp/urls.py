@@ -13,5 +13,7 @@ urlpatterns = [
     path("", views.portal, name='portal'),
     path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
     path('faq_feedback/', views.faq_feedback, name='faq_feedback'),
+    path('digitalproducts/', views.digital_products, name='digital_products'),
+    path('digitalproducts/<int:product_id>/', views.digital_product_detail, name='digital_product_detail'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

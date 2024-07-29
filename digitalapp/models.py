@@ -47,3 +47,12 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f'Feedback by {self.questioned_by} on {self.submitted_on}'
+
+class DigitalProduct(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='product_images/')
+    link = models.URLField()
+
+    def __str__(self):
+        return self.name

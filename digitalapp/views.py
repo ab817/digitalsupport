@@ -1,12 +1,12 @@
 # blog/views.py
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 #from django.views.decorators.csrf import csrf_exempt
 
-from .models import Post, Comment, Category, PortalSetting, Feedback
+from .models import Post, Comment, Category, PortalSetting, Feedback, DigitalProduct
 
 
 #@csrf_exempt
@@ -134,3 +134,11 @@ def faq_feedback(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'faq_feedback.html', {'page_obj': page_obj})
+
+def digital_products(request):
+    products = DigitalProduct.objects.all()
+    return render(request, 'digitalproducts.html', {'products': products})
+
+def digital_product_detail(request, product_id):
+    product = get_object_or_404(DigitalProduct, id=product_id)
+    return render(request, 'digitalproductdetail.html', {'product': product})
