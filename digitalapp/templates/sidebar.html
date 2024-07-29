@@ -19,7 +19,7 @@
     </div>
 
     <div class="card my-4">
-        <h5 class="card-header">Feedback</h5>
+        <h5 class="card-header">Any Questions to ask ?</h5>
         <div class="card-body">
             {% if messages %}
                 {% for message in messages %}
@@ -34,11 +34,11 @@
             <form method="post" action="{% url 'submit_feedback' %}">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="feedbackText">Your Feedback</label>
+                    <label for="feedbackText">Your Question</label>
                     <textarea class="form-control" id="feedbackText" name="feedbackText" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="questionedBy">Questioned By</label>
+                    <label for="questionedBy">Remarks</label>
                     <input type="text" class="form-control" id="questionedBy" name="questionedBy" required>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
