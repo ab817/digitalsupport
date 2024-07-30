@@ -50,7 +50,7 @@ class Feedback(models.Model):
 
 class DigitalProduct(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='product_images/')
     link = models.URLField()
 
