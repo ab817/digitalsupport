@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load custom_filters %}
+
 {% block content %}
 <header class="masthead">
     <div class="overlay"></div>
@@ -52,7 +54,7 @@
                                 </a>
                             {% endfor %}
                         </small>
-                        <p>{{ post.body | safe }}</p>
+                        <p>{{ post.body | truncate_chars:100 }}</p>
                     </div>
                 </div>
             {% endfor %}
