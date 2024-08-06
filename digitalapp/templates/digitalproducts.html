@@ -64,7 +64,7 @@
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto;">
                 <br><br>
                 <p>{{ product.description|truncate_chars:100 | safe }}</p>
-                <a href="{% url 'digital_product_detail' product.id %}">Click Here</a>
+                <a href="{% url 'digital_product_detail' product.id %}">View Details</a>
             </div>
         </div>
         {% endfor %}
