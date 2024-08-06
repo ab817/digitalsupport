@@ -52,6 +52,7 @@ class DigitalProduct(models.Model):
     name = models.CharField(max_length=100)
     description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='product_images/')
+    pdf = models.FileField(upload_to='product_pdfs/', blank=True, null=True)
     link = models.URLField()
 
     def __str__(self):

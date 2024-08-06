@@ -53,8 +53,10 @@
 <div class="container product-detail-container">
     <h2 class="text-center product-title">{{ product.name }}</h2>
     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-    <!--<p class="product-description">{{ product.description }}</p>-->
-    <p class="product-description">{{ product.description| safe}}</p>
+    <p class="product-description">{{ product.description|safe }}</p>
+    {% if product.pdf %}
+        <a href="{{ product.pdf.url }}" target="_blank" >Download Related Forms</a>
+    {% endif %}
     <!--<a href="{{ product.link }}" target="_blank" class="visit-product-link">Visit Product</a>-->
 </div>
 {% endblock content %}
