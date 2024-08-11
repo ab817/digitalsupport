@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .models import Downtime, Serveraccess, TechnicalSupportLog
+from .models import Downtime, Serveraccess, TechnicalSupportLog, TaskLog
+
 
 @login_required
 def adminpanel(request):
@@ -95,3 +96,16 @@ def export_technical_logs_csv(request):
         writer.writerow([log.sn, log.issue_no, log.date, log.category, log.requested_by, log.issue_logged_to, log.issue_description, log.reference_code, log.handling_person, log.status])
 
     return response
+
+@login_required
+def tasklog_list(request):
+    tasklogs = TaskLog.objects.all().order_by('-assigned_date')
+    paginator = Paginator(tasklogs, 5)  # Show 5 logs per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'tasklog_page_obj': page_obj,
+    }
+    return render(request, 'tasklog.html', context)

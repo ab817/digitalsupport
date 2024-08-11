@@ -12,5 +12,6 @@ urlpatterns = [
     path('serverlogs/', views.serverlog_list, name='serverlog_list'),
     path('technicallog/', technical_log_list, name='technical_log_list'),
     path('technicallog/export/', export_technical_logs_csv, name='export_technical_logs_csv'),
+    path('tasklog/', views.tasklog_list, name='tasklog_list'),
 ]
 

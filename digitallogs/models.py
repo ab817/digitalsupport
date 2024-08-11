@@ -14,7 +14,7 @@ class Downtime(models.Model):
     ]
 
     sn = models.AutoField(primary_key=True)
-    datetime = models.DateTimeField(auto_now_add=True)
+    datetime = models.DateTimeField()
     system_channel_name = models.CharField(max_length=255)
     reason = models.TextField()
     downtime_total_time = models.DurationField()
@@ -34,7 +34,7 @@ class Serveraccess(models.Model):
     ]
 
     sn = models.AutoField(primary_key=True)
-    datetime = models.DateTimeField(auto_now_add=True)
+    datetime = models.DateTimeField()
     server_name = models.CharField(max_length=50, choices=SERVER_CHOICES)
     purpose = models.TextField()
     access_by = models.CharField(max_length=255)
@@ -116,3 +116,39 @@ class TechnicalSupportLog(models.Model):
                 new_number = 1
             self.issue_no = f'DBD - {new_number:02d}'
         super().save(*args, **kwargs)
+
+
+class TaskLog(models.Model):
+    TASK_TYPE_CHOICES = [
+        ('Bug', 'Bug'),
+        ('Feature', 'Feature'),
+        ('Improvement', 'Improvement'),
+        ('Software', 'Software')
+    ]
+
+    PRIORITY_CHOICES = [
+        ('Low', 'Low'),
+        ('Medium', 'Medium'),
+        ('High', 'High'),
+        ('Critical', 'Critical'),
+    ]
+
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('In Progress', 'In Progress'),
+        ('Completed', 'Completed'),
+    ]
+
+    id = models.AutoField(primary_key=True)
+    task_details = models.TextField()
+    task_type = models.CharField(max_length=50, choices=TASK_TYPE_CHOICES)
+    assigned_date = models.DateField()
+    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    assigned_to = models.CharField(max_length=100)
+    days_allocated = models.IntegerField()
+    solved_date = models.DateField(null=True, blank=True)
+    remarks = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.task_type} - {self.task_details[:50]}'
