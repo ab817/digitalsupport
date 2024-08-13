@@ -174,6 +174,12 @@ class TaskLog(models.Model):
         ('Completed', 'Completed'),
     ]
 
+    CATEGORY_CHOICES = [
+        ('Overall', 'Overall'),
+        ('Board 1', 'Board 1'),
+        ('Board 2', 'Board 2'),
+    ]
+
     id = models.AutoField(primary_key=True)
     task_details = models.TextField()
     task_type = models.CharField(max_length=50, choices=TASK_TYPE_CHOICES)
@@ -184,6 +190,7 @@ class TaskLog(models.Model):
     days_allocated = models.IntegerField()
     solved_date = models.DateField(null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
 
     def __str__(self):
         return f'{self.task_type} - {self.task_details[:50]}'

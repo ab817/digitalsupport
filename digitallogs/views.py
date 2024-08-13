@@ -97,15 +97,22 @@ def export_technical_logs_csv(request):
 
     return response
 
+
 @login_required
 def tasklog_list(request):
-    tasklogs = TaskLog.objects.all().order_by('-assigned_date')
-    paginator = Paginator(tasklogs, 5)  # Show 5 logs per page
+    selected_category = request.GET.get('category', 'All')
 
+    if selected_category == 'All':
+        tasklogs = TaskLog.objects.exclude(category__in=['Mobile Banking', 'ATM', 'Others']).order_by('id')
+    else:
+        tasklogs = TaskLog.objects.filter(category=selected_category).order_by('id')
+
+    paginator = Paginator(tasklogs, 5)  # Show 5 logs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
         'tasklog_page_obj': page_obj,
+        'selected_category': selected_category,
     }
     return render(request, 'tasklog.html', context)

@@ -2,12 +2,25 @@
 
 {% block content %}
 <div class="container">
-    <h2>Task Logs</h2>
-    <a href="{% url 'admin:digitallogs_tasklog_add' %}" class="btn btn-secondary mb-3" target="_blank">Add New Task</a>
+    <h2>Digital Department FY - 81/82: Task Logs</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'admin:digitallogs_tasklog_add' %}" class="btn btn-secondary" target="_blank">Add New Task</a>
+
+        <div>
+            <label for="category-select">Filter by Category:</label>
+            <select id="category-select" class="form-select" onchange="location = this.value;">
+                <option value="?category=Overall" {% if selected_category == 'Overall' %}selected{% endif %}>Overall</option>
+                <option value="?category=Board 1" {% if selected_category == 'Board 1' %}selected{% endif %}>Board 1</option>
+                <option value="?category=Board 2" {% if selected_category == 'Board 2' %}selected{% endif %}>Board 2</option>
+            </select>
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>SN</th>
                 <th>Details</th>
                 <th>Task Type</th>
                 <th>Assigned Date</th>
@@ -22,7 +35,8 @@
         <tbody>
             {% for log in tasklog_page_obj %}
             <tr>
-                <td>{{ log.id }}</td>
+                <!--<td>{{ log.id }}</td>-->
+                <td>{{ forloop.counter }}</td>
                 <td>{{ log.task_details }}</td>
                 <td>{{ log.task_type }}</td>
                 <td>{{ log.assigned_date }}</td>

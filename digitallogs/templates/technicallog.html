@@ -23,7 +23,8 @@
         <tbody>
             {% for log in page_obj %}
             <tr>
-                <td>{{ log.sn }}</td>
+               <!-- <td>{{ log.sn }}</td> -->
+                <td>{{ forloop.counter }}</td>
                 <td>{{ log.issue_no }}</td>
                 <td>{{ log.date }}</td>
                 <td>{{ log.category }}</td>

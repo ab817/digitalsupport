@@ -21,7 +21,8 @@
         <tbody>
             {% for downtime in downtime_page_obj %}
             <tr>
-                <td>{{ downtime.sn }}</td>
+                <!--<td>{{ downtime.sn }}</td>-->
+                <td>{{ forloop.counter }}</td>
                 <td>{{ downtime.datetime }}</td>
                 <td>{{ downtime.system_channel_name }}</td>
                 <td>{{ downtime.reason }}</td>
