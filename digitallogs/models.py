@@ -25,12 +25,30 @@ class Downtime(models.Model):
 
 class Serveraccess(models.Model):
     SERVER_CHOICES = [
-        ('Fonepay', 'Fonepay'),
-        ('Esewa', 'Esewa'),
-        ('Khalti', 'Khalti'),
+        ('Fonepay (Live)', 'Fonepay (Live)'),
+        ('Fonepay (Test)', 'Fonepay (Test)'),
+        ('Esewa (Live)', 'Esewa (Live)'),
+        ('Esewa (Test)', 'Esewa (Test)'),
+        ('Khalti (Live)', 'Khalti (Live)'),
+        ('Khalti (Test)', 'Khalti (Test)'),
         ('SMS', 'SMS'),
-        ('Mobile', 'Mobile'),
-        ('Internet', 'Internet'),
+        ('Mobile (Live)', 'Mobile (Live)'),
+        ('Mobile (Test)', 'Mobile (Test)'),
+        ('Internet Banking (Live)', 'Internet Banking (Live'),
+        ('Internet Banking (Test)', 'Internet Banking (Test'),
+        ('Online Account(Test)', 'Online Account(Test)'),
+        ('Online Account(Live)', 'Online Account(Live)'),
+        ('Customer 360(Test)', 'Online Account(Test)'),
+        ('Kisan System(Live)', 'Kisan System(Live)'),
+        ('IPS', 'IPS'),
+        ('Connect IPS', 'Connect IPS'),
+        ('Corporate Pay', 'Corporate Pay'),
+        ('ECC', 'ECC'),
+        ('Nepal Pay QR', 'Nepal Pay QR'),
+        ('Gokyo', 'Gokyo'),
+        ('Foneloan (Test)', 'Foneloan (Test)'),
+        ('Foneloan (Live)', 'Foneloan (Live)'),
+        ('Digital Chautari', 'Digital Chautari'),
     ]
 
     sn = models.AutoField(primary_key=True)
@@ -62,6 +80,12 @@ class TechnicalSupportLog(models.Model):
         ('Khalti', 'Khalti'),
         ('NPS', 'NPS'),
         ('SMS', 'SMS'),
+        ('ATM', 'ATM'),
+        ('Kisan', 'Kisan'),
+        ('POS', 'POS'),
+        ('Online Account', 'Online Account'),
+        ('IPS', 'IPS'),
+        ('ECC', 'ECC'),
     ]
 
     REQUESTED_BY_CHOICES = [
@@ -78,6 +102,10 @@ class TechnicalSupportLog(models.Model):
         ('Esewa', 'Esewa'),
         ('Khalti', 'Khalti'),
         ('NPS', 'NPS'),
+        ('Peace Nepal', 'Peace Nepal'),
+        ('Digihub', 'Digihub'),
+        ('NCHL', 'NCHL'),
+        ('Gokyo', 'Gokyo'),
         ('Others', 'Others'),
     ]
 
@@ -86,6 +114,13 @@ class TechnicalSupportLog(models.Model):
         ('Aakriti Silwal', 'Aakriti Silwal'),
         ('Bom Bahadur BK', 'Bom Bahadur BK'),
         ('Bikash Devkota', 'Bikash Devkota'),
+        ('Birendra Yadav', 'Birendra Yadav'),
+        ('Shreya Shrestha', 'Shreya Shrestha'),
+        ('Prakriti Gyawali', 'Prakriti Gyawali'),
+        ('Manju Upreti', 'Manju Upreti'),
+        ('Arjun Poudel', 'Arjun Poudel'),
+        ('Prakash Pandey', 'Prakash Pandey'),
+        ('Priya Gupta', 'Priya Gupta'),
     ]
 
     sn = models.AutoField(primary_key=True)
