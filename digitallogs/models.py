@@ -38,7 +38,7 @@ class Serveraccess(models.Model):
         ('Internet Banking (Test)', 'Internet Banking (Test'),
         ('Online Account(Test)', 'Online Account(Test)'),
         ('Online Account(Live)', 'Online Account(Live)'),
-        ('Customer 360(Test)', 'Online Account(Test)'),
+        ('Customer 360(Test)', 'Customer 360(Test)'),
         ('Kisan System(Live)', 'Kisan System(Live)'),
         ('IPS', 'IPS'),
         ('Connect IPS', 'Connect IPS'),
