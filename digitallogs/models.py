@@ -1,6 +1,8 @@
 # digitallogs/models.py
 
 from django.db import models
+from django.shortcuts import redirect
+
 
 class Downtime(models.Model):
     HIGH = 'High'
@@ -180,6 +182,13 @@ class TaskLog(models.Model):
         ('Board 2', 'Board 2'),
     ]
 
+    QUARTER_CHOICES = [
+        ('First Quarter', 'First Quarter'),
+        ('Second Quarter', 'Second Quarter'),
+        ('Third Quarter', 'Third Quarter'),
+        ('Fourth Quarter', 'Fourth Quarter'),
+    ]
+
     id = models.AutoField(primary_key=True)
     task_details = models.TextField()
     task_type = models.CharField(max_length=50, choices=TASK_TYPE_CHOICES)
@@ -187,10 +196,11 @@ class TaskLog(models.Model):
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     assigned_to = models.CharField(max_length=100)
-    days_allocated = models.IntegerField()
-    solved_date = models.DateField(null=True, blank=True)
+    due_date = models.CharField(max_length=50, choices=QUARTER_CHOICES,  default="First")
+    live_date = models.DateField(null=True, blank=True)
     remarks = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
 
     def __str__(self):
         return f'{self.task_type} - {self.task_details[:50]}'
+

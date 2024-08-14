@@ -1,5 +1,5 @@
 # digitallogs/urls.py
-
+from django.shortcuts import redirect
 from django.urls import path
 from . import views
 from .views import export_technical_logs_csv, technical_log_list
@@ -12,6 +12,8 @@ urlpatterns = [
     path('serverlogs/', views.serverlog_list, name='serverlog_list'),
     path('technicallog/', technical_log_list, name='technical_log_list'),
     path('technicallog/export/', export_technical_logs_csv, name='export_technical_logs_csv'),
-    path('tasklog/', views.tasklog_list, name='tasklog_list'),
+    #path('tasklog/', views.tasklog_list, name='tasklog_list'),
+    path('tasklog/', views.redirect_to_overall, name='tasklog_default'),
+    path('tasklog/list/', views.tasklog_list, name='tasklog_list'),
 ]
 

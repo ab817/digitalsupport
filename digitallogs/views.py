@@ -1,6 +1,6 @@
 import csv
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .models import Downtime, Serveraccess, TechnicalSupportLog, TaskLog
@@ -100,10 +100,10 @@ def export_technical_logs_csv(request):
 
 @login_required
 def tasklog_list(request):
-    selected_category = request.GET.get('category', 'All')
+    selected_category = request.GET.get('category', 'Overall')
 
-    if selected_category == 'All':
-        tasklogs = TaskLog.objects.exclude(category__in=['Mobile Banking', 'ATM', 'Others']).order_by('id')
+    if selected_category == 'Overall':
+        tasklogs = TaskLog.objects.exclude(category__in=['Board 1', 'Board 2']).order_by('id')
     else:
         tasklogs = TaskLog.objects.filter(category=selected_category).order_by('id')
 
@@ -116,3 +116,6 @@ def tasklog_list(request):
         'selected_category': selected_category,
     }
     return render(request, 'tasklog.html', context)
+
+def redirect_to_overall(request):
+    return redirect('/adminpanel/tasklog/list/?category=Overall')

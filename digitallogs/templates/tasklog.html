@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h2>Digital Department FY - 81/82: Task Logs</h2>
+    <h2>Digital Department FY - 81/82: Digital Board</h2>
 
     <div class="d-flex justify-content-between mb-3">
         <a href="{% url 'admin:digitallogs_tasklog_add' %}" class="btn btn-secondary" target="_blank">Add New Task</a>
@@ -27,29 +27,29 @@
                 <th>Priority</th>
                 <th>Status</th>
                 <th>Assigned to</th>
-                <th>Days allocated</th>
-                <th>Solved Date</th>
+                <th>Due Date</th>
+                <th>Live Date</th>
                 <th>Remarks</th>
             </tr>
         </thead>
         <tbody>
             {% for log in tasklog_page_obj %}
             <tr>
-                <!--<td>{{ log.id }}</td>-->
-                <td>{{ forloop.counter }}</td>
+                <td>{{ forloop.counter }}</td> <!-- Sequential numbering -->
                 <td>{{ log.task_details }}</td>
                 <td>{{ log.task_type }}</td>
                 <td>{{ log.assigned_date }}</td>
                 <td>{{ log.priority }}</td>
                 <td>{{ log.status }}</td>
                 <td>{{ log.assigned_to }}</td>
-                <td>{{ log.days_allocated }}</td>
-                <td>{{ log.solved_date }}</td>
+                <td>{{ log.due_date }}</td>
+                <td>{{ log.live_date }}</td>
                 <td>{{ log.remarks }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
     <nav aria-label="Page navigation">
         <ul class="pagination">
             {% if tasklog_page_obj.has_previous %}
