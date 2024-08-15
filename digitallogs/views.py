@@ -107,7 +107,7 @@ def tasklog_list(request):
     else:
         tasklogs = TaskLog.objects.filter(category=selected_category).order_by('id')
 
-    paginator = Paginator(tasklogs, 5)  # Show 5 logs per page
+    paginator = Paginator(tasklogs, 50)  # Show 5 logs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
