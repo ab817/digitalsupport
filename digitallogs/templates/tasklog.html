@@ -40,7 +40,10 @@
                 <td>{{ log.task_type }}</td>
                 <td>{{ log.assigned_date }}</td>
                 <td>{{ log.priority }}</td>
-                <td>{{ log.status }}</td>
+                <!-- Apply green color to status when it is 'Completed' -->
+                <td class="{% if log.status == 'Completed' %}text-success{% endif %}">
+                    {{ log.status }}
+                </td>
                 <td>{{ log.assigned_to }}</td>
                 <td>{{ log.due_date }}</td>
                 <td>{{ log.live_date }}</td>
