@@ -1,4 +1,5 @@
 # blog/views.py
+from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
@@ -105,6 +106,7 @@ def portal(request):
     return render(request, 'portal.html', {
         'show_popup': show_popup,
         'popup_image': popup_image,
+        'WHISTLE_BLOWER_URL': settings.WHISTLE_BLOWER_URL,
        # 'show_image': show_image
     })
 
@@ -142,3 +144,4 @@ def digital_products(request):
 def digital_product_detail(request, product_id):
     product = get_object_or_404(DigitalProduct, id=product_id)
     return render(request, 'digitalproductdetail.html', {'product': product})
+
