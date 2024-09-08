@@ -16,7 +16,7 @@ def downtime_list(request):
     #serveraccesses = Serveraccess.objects.all().order_by('-datetime')
 
     # Pagination for Downtime logs
-    downtime_paginator = Paginator(downtimes, 5)
+    downtime_paginator = Paginator(downtimes, 20)
     downtime_page_number = request.GET.get('downtime_page')
     downtime_page_obj = downtime_paginator.get_page(downtime_page_number)
 
@@ -64,7 +64,7 @@ def serverlog_list(request):
     serveraccesses = Serveraccess.objects.all().order_by('-datetime')
 
     # Pagination for Server Access logs
-    serveraccess_paginator = Paginator(serveraccesses, 5)
+    serveraccess_paginator = Paginator(serveraccesses, 20)
     serveraccess_page_number = request.GET.get('serveraccess_page')
     serveraccess_page_obj = serveraccess_paginator.get_page(serveraccess_page_number)
 
@@ -76,7 +76,7 @@ def serverlog_list(request):
 @login_required
 def technical_log_list(request):
     tech_logs = TechnicalSupportLog.objects.all().order_by('-date')
-    paginator = Paginator(tech_logs, 5)  # Show 5 logs per page.
+    paginator = Paginator(tech_logs, 20)  # Show 5 logs per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
