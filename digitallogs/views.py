@@ -1,9 +1,10 @@
 import csv
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .models import Downtime, Serveraccess, TechnicalSupportLog, TaskLog
+from .models import Downtime, Serveraccess, TechnicalSupportLog, TaskLog ,ServerIp
+
 
 
 @login_required
@@ -119,3 +120,34 @@ def tasklog_list(request):
 
 def redirect_to_overall(request):
     return redirect('/adminpanel/tasklog/list/?category=Overall')
+
+
+@login_required
+def serverip(request):
+    serverips = ServerIp.objects.all().order_by('-id')
+    # return JsonResponse({'serverips': list(serverips.values())})
+    paginator = Paginator(serverips, 50)  # Show 5 logs per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'serverip_page_obj': page_obj,
+    }
+    return render(request, 'serverip.html', context)
+
+
+@login_required
+def export_serverdetails_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="serverdetails.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['SN', 'Server Name', 'Server IP', 'URL', 'Storage', 'Internet Access', 'Request By', 'Server OS', 'Database IP','Create at', 'Remarks'])
+
+    # serveraccesses = Serveraccess.objects.all().order_by('-datetime')
+    serverdetails = ServerIp.objects.all()
+
+    for log in serverdetails:
+        writer.writerow([log.id, log.server_name, log.server_ip, log.url, log.storage, log.internet_access, log.request_by,log.server_os,log.database_ip,log.create_at,log.remarks])
+
+    return response

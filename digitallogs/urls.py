@@ -15,5 +15,7 @@ urlpatterns = [
     #path('tasklog/', views.tasklog_list, name='tasklog_list'),
     path('tasklog/', views.redirect_to_overall, name='tasklog_default'),
     path('tasklog/list/', views.tasklog_list, name='tasklog_list'),
+    path('serverip/', views.serverip, name='serverip'),
+    path('export_serverdetails_csv',views.export_serverdetails_csv, name='export_serverdetails_csv'),
 ]
 

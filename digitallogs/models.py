@@ -203,4 +203,19 @@ class TaskLog(models.Model):
 
     def __str__(self):
         return f'{self.task_type} - {self.task_details[:50]}'
+    
+class ServerIp(models.Model):
+    server_name = models.CharField(max_length=100)
+    server_ip = models.CharField(max_length=100,unique=True)
+    url= models.CharField(null=True,blank=True, max_length=100)
+    storage= models.CharField(null=True,blank=True,max_length=100)
+    internet_access=models.BooleanField(default=False)
+    request_by= models.CharField(null=True,blank=True,max_length=100)
+    server_os= models.CharField(null=True,blank=True,max_length=100)
+    create_at= models.DateField(null=True,blank=True)
+    database_ip= models.CharField(null=True,blank=True, max_length=100)
+    remarks= models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.server_name
 
