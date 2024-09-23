@@ -17,3 +17,12 @@ class TelephoneLine(models.Model):
 
     def __str__(self):
         return self.category
+
+
+class ContactInfo(models.Model):
+    department = models.CharField(max_length=100)
+    tasks = models.TextField()
+    contact_number = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.department

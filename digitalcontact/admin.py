@@ -5,7 +5,7 @@ from django import forms
 from django.shortcuts import render
 from django.urls import path
 from django.http import HttpResponseRedirect
-from .models import Contact, TelephoneLine
+from .models import Contact, TelephoneLine, ContactInfo
 import csv
 import io
 
@@ -15,6 +15,10 @@ class TelephoneLineAdmin(admin.ModelAdmin):
     search_fields = ('category', 'lines')
 class CSVUploadForm(forms.Form):
     csv_file = forms.FileField()
+
+class ContactInfoAdmin(admin.ModelAdmin):
+    list_display = ('department', 'contact_number')
+    search_fields = ('department', 'contact_number', 'tasks')
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'mobile_number', 'email')
@@ -59,3 +63,4 @@ class ContactAdmin(admin.ModelAdmin):
         return super(ContactAdmin, self).changelist_view(request, extra_context=extra_context)
 
 admin.site.register(Contact, ContactAdmin)
+admin.site.register(ContactInfo, ContactInfoAdmin)

@@ -49,6 +49,8 @@
         }
         .card img {
             max-width: 100px;
+            margin: 0 auto; /* This centers the image */
+            display: block;
         }
         .card h3 {
             margin-top: 10px;
@@ -123,6 +125,18 @@
         .popup-content button:hover {
             background: #005a2a;
         }
+
+        @media (max-width: 768px) {
+        .card {
+            width: calc(50% - 40px); /* Two cards per row on smaller screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            width: 100%; /* One card per row on mobile devices */
+        }
+    }
     </style>
 
     <header>
@@ -163,13 +177,12 @@
                     <a href="{% url 'digital_products' %}">Go to Products</a>
                 </div>
             </div>
-            <!-- Uncomment and use this section when the QR Payment feature is ready -->
             <div class="col-md-4">
                 <div class="card">
                     <img src="{% static 'images/manual.png' %}" alt="CONTACT">
-                    <h3>ADBL - Contact Lists Information</h3>
-                    <p>All contacts of staffs and branches on one page.</p>
-                    <a href="{% url 'contact_list' %}">Go To Contact List</a>
+                    <h3>ADBL - Overall Contact Information</h3>
+                    <p>All Departmental, Sections and Staffs on a single page.</p>
+                    <a href="{% url 'contact_cards' %}">Go To Contact Info</a>
                 </div>
             </div>
         </div>

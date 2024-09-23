@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Contact, TelephoneLine
+from .models import Contact, TelephoneLine, ContactInfo
 from django.core.paginator import Paginator
 
 def contact_list(request):
@@ -27,3 +27,8 @@ def contact_list(request):
 def telephone_lines(request):
     telephone_lines = TelephoneLine.objects.all()
     return render(request, 'telephone_lines.html', {'telephone_lines': telephone_lines})
+
+
+def contact_card_view(request):
+    contacts = ContactInfo.objects.all()
+    return render(request, 'contactcard.html', {'contacts': contacts})
