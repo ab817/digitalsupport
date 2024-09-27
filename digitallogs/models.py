@@ -223,7 +223,6 @@ class ServerIp(models.Model):
 class CustomerForm(models.Model):
     CUSTOMER_PROFILE_CHOICES = [
         ('Bulk Registration', 'Bulk Registration'),
-        ('Self Registration', 'Self Registration'),
     ]
 
     REMARKS_CHOICES = [
@@ -235,8 +234,8 @@ class CustomerForm(models.Model):
     customer_id = models.CharField(max_length=255)
     account_number = models.CharField(max_length=20)
     branch = models.CharField(max_length=255)
-    charge_deducted = models.DecimalField(max_digits=10, decimal_places=2)
-    customer_profile = models.CharField(max_length=20, choices=CUSTOMER_PROFILE_CHOICES)
+    charge_deducted = models.DecimalField(max_digits=10, decimal_places=2, default=150.00)
+    customer_profile = models.CharField(max_length=20, choices=CUSTOMER_PROFILE_CHOICES, default='Bulk Registration')
     remarks = models.CharField(max_length=50, choices=REMARKS_CHOICES)
 
     def __str__(self):

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_form.html" %}
 
 {% block content %}
 <div class="container">
@@ -32,13 +32,12 @@
         </div>
         <div class="form-group">
             <label for="charge_deducted">Charge Deducted</label>
-            <input type="number" step="0.01" class="form-control" id="charge_deducted" name="charge_deducted" required>
+            <input type="number" class="form-control" id="charge_deducted" name="charge_deducted" value="150.00" readonly>
         </div>
         <div class="form-group">
             <label for="customer_profile">Customer Profile</label>
-            <select class="form-control" id="customer_profile" name="customer_profile" required>
+            <select class="form-control" id="customer_profile" name="customer_profile" required readonly>
                 <option value="Bulk Registration">Bulk Registration</option>
-                <option value="Self Registration">Self Registration</option>
             </select>
         </div>
         <div class="form-group">

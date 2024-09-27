@@ -1,9 +1,9 @@
-{% extends "adminpanel.html" %}
+{% extends "base_form.html" %}
 
 {% block content %}
 <div class="container">
     <h2>Customer Form Data</h2>
-    <a href="{% url 'export_customer_form_csv' %}" class="btn btn-success mb-3">Export to CSV</a>
+    <a href="{% url 'export_customer_form_csv' %}" class="btn btn-success mb-3">Export to Excel</a>
     <table class="table table-striped">
         <thead>
             <tr>
