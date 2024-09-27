@@ -219,5 +219,26 @@ class ServerIp(models.Model):
     def __str__(self):
         return self.server_name
 
+#branch feedback form model --- bulk-form.html
+class CustomerForm(models.Model):
+    CUSTOMER_PROFILE_CHOICES = [
+        ('Bulk Registration', 'Bulk Registration'),
+        ('Self Registration', 'Self Registration'),
+    ]
 
+    REMARKS_CHOICES = [
+        ('Delete and refund charge', 'Delete and refund charge'),
+        ('Change to CustomerFinal Profile', 'Change to CustomerFinal Profile'),
+    ]
+
+    customer_name = models.CharField(max_length=255)
+    customer_id = models.CharField(max_length=255)
+    account_number = models.CharField(max_length=20)
+    branch = models.CharField(max_length=255)
+    charge_deducted = models.DecimalField(max_digits=10, decimal_places=2)
+    customer_profile = models.CharField(max_length=20, choices=CUSTOMER_PROFILE_CHOICES)
+    remarks = models.CharField(max_length=50, choices=REMARKS_CHOICES)
+
+    def __str__(self):
+        return self.customer_name
 

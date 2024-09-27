@@ -17,5 +17,9 @@ urlpatterns = [
     path('tasklog/list/', views.tasklog_list, name='tasklog_list'),
     path('serverip/', views.serverip, name='serverip'),
     path('export_serverdetails_csv',views.export_serverdetails_csv, name='export_serverdetails_csv'),
+    #bulk feedback form - bulk-form.html
+    path('bulk-form/', views.bulk_form, name='bulk_form'),
+    path('bulk-form-admin/', views.bulk_form_admin, name='bulk_form_admin'),
+    path('export_customer_form_csv/', views.export_customer_form_csv, name='export_customer_form_csv'),
 ]
 
