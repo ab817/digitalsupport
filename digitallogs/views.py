@@ -197,9 +197,9 @@ def export_customer_form_csv(request):
     worksheet = workbook.active
     worksheet.title = 'Customer Forms'
 
-    # Define the titles for the columns
-    columns = ['Customer Name', 'Customer ID', 'Account Number', 'Branch', 'Charge Deducted', 'Customer Profile',
-               'Remarks']
+    # Define the titles for the columns, including SN and date_of_entry
+    columns = ['SN', 'Customer Name', 'Customer ID', 'Account Number', 'Branch', 'Charge Deducted',
+               'Customer Profile', 'Remarks', 'Date of Entry']
     row_num = 1
 
     # Assign the titles for each cell in the header row
@@ -213,13 +213,18 @@ def export_customer_form_csv(request):
 
     for form in forms:
         row_num += 1
-        worksheet.cell(row=row_num, column=1, value=form.customer_name)
-        worksheet.cell(row=row_num, column=2, value=form.customer_id)
-        worksheet.cell(row=row_num, column=3, value=form.account_number)  # Account number will retain leading zeros
-        worksheet.cell(row=row_num, column=4, value=form.branch)
-        worksheet.cell(row=row_num, column=5, value=form.charge_deducted)
-        worksheet.cell(row=row_num, column=6, value=form.customer_profile)
-        worksheet.cell(row=row_num, column=7, value=form.remarks)
+        worksheet.cell(row=row_num, column=1, value=form.id)  # SN as ID
+        worksheet.cell(row=row_num, column=2, value=form.customer_name)
+        worksheet.cell(row=row_num, column=3, value=form.customer_id)
+        worksheet.cell(row=row_num, column=4, value=form.account_number)  # Account number will retain leading zeros
+        worksheet.cell(row=row_num, column=5, value=form.branch)
+        worksheet.cell(row=row_num, column=6, value=form.charge_deducted)
+        worksheet.cell(row=row_num, column=7, value=form.customer_profile)
+        worksheet.cell(row=row_num, column=8, value=form.remarks)
+
+        # Write date_of_entry without timezone
+        date_of_entry = form.date_of_entry.replace(tzinfo=None)  # Remove timezone info
+        worksheet.cell(row=row_num, column=9, value=date_of_entry)  # Date of Entry
 
     # Adjust column widths
     for col_num, column_title in enumerate(columns, 1):
