@@ -1,54 +1,56 @@
 {% extends "base_form.html" %}
 
 {% block content %}
-<div class="container">
-    <h2>Bulk Registration Charge Refund Form</h2>
-    {% if messages %}
-        <div class="container mt-3">
-            {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6">
+        <h2 class="text-center">Bulk Registration Renew Charge Refund Form</h2>
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="customer_name">Customer Name</label>
-            <input type="text" class="form-control" id="customer_name" name="customer_name" required>
-        </div>
-        <div class="form-group">
-            <label for="customer_id">Customer ID</label>
-            <input type="text" class="form-control" id="customer_id" name="customer_id" required>
-        </div>
-        <div class="form-group">
-            <label for="account_number">Account Number</label>
-            <input type="text" class="form-control" id="account_number" name="account_number" required>
-        </div>
-        <div class="form-group">
-            <label for="branch">Branch</label>
-            <input type="text" class="form-control" id="branch" name="branch" required>
-        </div>
-        <div class="form-group">
-            <label for="charge_deducted">Charge Deducted</label>
-            <input type="number" class="form-control" id="charge_deducted" name="charge_deducted" value="150.00" readonly>
-        </div>
-        <div class="form-group">
-            <label for="customer_profile">Customer Profile</label>
-            <select class="form-control" id="customer_profile" name="customer_profile" required readonly>
-                <option value="Bulk Registration">Bulk Registration</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="remarks">Remarks</label>
-            <select class="form-control" id="remarks" name="remarks" required>
-                <option value="Delete and refund charge">Delete and refund charge</option>
-                <option value="Change to CustomerFinal Profile">Change to CustomerFinal Profile</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <br>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="customer_name">Customer Name</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_id">Customer ID</label>
+                <input type="text" class="form-control" id="customer_id" name="customer_id" required>
+            </div>
+            <div class="form-group">
+                <label for="account_number">Account Number</label>
+                <input type="text" class="form-control" id="account_number" name="account_number" required>
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch</label>
+                <input type="text" class="form-control" id="branch" name="branch" required>
+            </div>
+            <div class="form-group">
+                <label for="charge_deducted">Charge Deducted</label>
+                <input type="number" class="form-control" id="charge_deducted" name="charge_deducted" value="150.00" readonly>
+            </div>
+            <div class="form-group">
+                <label for="customer_profile">Customer Profile</label>
+                <select class="form-control" id="customer_profile" name="customer_profile" required readonly>
+                    <option value="Bulk Registration">Bulk Registration</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="remarks">Remarks</label>
+                <select class="form-control" id="remarks" name="remarks" required>
+                    <option value="Delete and refund charge">Delete and refund charge</option>
+                    <option value="Change to CustomerFinal Profile">Change to CustomerFinal Profile</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+        <br>
+    </div>
 </div>
 {% endblock %}
