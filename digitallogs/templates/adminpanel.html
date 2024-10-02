@@ -53,6 +53,7 @@
 <div class="container">
     <h2 class="text-center" style="font-weight: bold;">DIGITAL ADMIN PORTAL</h2>
     <div class="card-container">
+        {% if user.groups.all.0.name == "AllRole" or user.is_superuser == True %}
         <div class="card">
             <div class="card-header">
                 System Downtime Logs
@@ -60,24 +61,6 @@
             <div class="card-body">
                 <p>Welcome! You can enter the Downtime Logs using the options provided.</p>
                 <a href="{% url 'downtime_list' %}" target="_blank">View Details</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                Technical Support Logs
-            </div>
-            <div class="card-body">
-                <p>Welcome! You can enter the Technical Support Logs using the options provided.</p>
-                <a href="{% url 'technical_log_list' %}" target="_blank">View Details</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                Server Access Logs
-            </div>
-            <div class="card-body">
-                <p>Welcome! You can enter the Server Logs using the options provided.</p>
-                <a href="{% url 'serverlog_list' %}" target="_blank">View Details</a>
             </div>
         </div>
         <div class="card">
@@ -109,6 +92,24 @@
         </div>
         <div class="card">
             <div class="card-header">
+                Technical Support Logs
+            </div>
+            <div class="card-body">
+                <p>Welcome! You can enter the Technical Support Logs using the options provided.</p>
+                <a href="{% url 'technical_log_list' %}" target="_blank">View Details</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Server Access Logs
+            </div>
+            <div class="card-body">
+                <p>Welcome! You can enter the Server Logs using the options provided.</p>
+                <a href="{% url 'serverlog_list' %}" target="_blank">View Details</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
                 FAQ Posts
             </div>
             <div class="card-body">
@@ -116,6 +117,35 @@
                 <a href="{% url 'admin:digitalapp_post_add' %}" target="_blank">View Details</a>
             </div>
         </div>
+        {% elif user.groups.all.0.name == "LogUser" %}
+        <div class="card">
+            <div class="card-header">
+                Technical Support Logs
+            </div>
+            <div class="card-body">
+                <p>Welcome! You can enter the Technical Support Logs using the options provided.</p>
+                <a href="{% url 'technical_log_list' %}" target="_blank">View Details</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Server Access Logs
+            </div>
+            <div class="card-body">
+                <p>Welcome! You can enter the Server Logs using the options provided.</p>
+                <a href="{% url 'serverlog_list' %}" target="_blank">View Details</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                FAQ Posts
+            </div>
+            <div class="card-body">
+                <p>Welcome! You can add new FAQ Posts with the options provided.</p>
+                <a href="{% url 'admin:digitalapp_post_add' %}" target="_blank">View Details</a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
