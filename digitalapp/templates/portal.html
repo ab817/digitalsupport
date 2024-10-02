@@ -163,14 +163,6 @@
         <div class="row mb-4">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="{% static 'images/faq.png' %}" alt="FAQ">
-                    <h3>Frequently Asked Questions</h3>
-                    <p>Branches can find answers to frequently asked questions and get help with common issues in Digital Products.</p>
-                    <a href="{% url 'blog_index' %}">Go to FAQ</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
                     <img src="{% static 'images/manual.png' %}" alt="MANUAL">
                     <h3>ADBL - Digital Products</h3>
                     <p>Details of each digital product in providing services to Customers.</p>
@@ -180,9 +172,17 @@
             <div class="col-md-4">
                 <div class="card">
                     <img src="{% static 'images/manual.png' %}" alt="CONTACT">
-                    <h3>ADBL - Overall Contact Information</h3>
+                    <h3>ADBL - Contact Information</h3>
                     <p>All Departmental, Sections and Staffs on a single page.</p>
                     <a href="{% url 'contact_cards' %}">Go To Contact Info</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/faq.png' %}" alt="FAQ">
+                    <h3>Frequently Asked Questions</h3>
+                    <p>Branches can find answers to frequently asked questions and get help with common issues in Digital Products.</p>
+                    <a href="{% url 'blog_index' %}">Go to FAQ</a>
                 </div>
             </div>
         </div>
