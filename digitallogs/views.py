@@ -16,7 +16,7 @@ def adminpanel(request):
     return render(request, 'adminpanel.html')
 
 @login_required
-@role_required(allowed_roles=['AllRole','LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def downtime_list(request):
     downtimes = Downtime.objects.all().order_by('-datetime')
     #serveraccesses = Serveraccess.objects.all().order_by('-datetime')
@@ -38,7 +38,7 @@ def downtime_list(request):
     return render(request, 'downtime_list.html', context)
 
 @login_required
-@role_required(allowed_roles=['AllRole','LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def export_downtimes_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="downtimes.csv"'
@@ -53,7 +53,7 @@ def export_downtimes_csv(request):
     return response
 
 @login_required
-@role_required(allowed_roles=['AllRole','LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def export_serveraccess_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="serveraccess.csv"'
@@ -68,7 +68,7 @@ def export_serveraccess_csv(request):
     return response
 
 @login_required
-@role_required(allowed_roles=['AllRole','LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def serverlog_list(request):
     serveraccesses = Serveraccess.objects.all().order_by('-datetime')
 
@@ -83,7 +83,7 @@ def serverlog_list(request):
     return render(request, 'serverlog.html', context)
 
 @login_required
-@role_required(allowed_roles=['AllRole', 'LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def technical_log_list(request):
     tech_logs = TechnicalSupportLog.objects.all().order_by('-date')
     paginator = Paginator(tech_logs, 20)  # Show 5 logs per page.
@@ -94,7 +94,7 @@ def technical_log_list(request):
     return render(request, 'technicallog.html', context)
 
 @login_required
-@role_required(allowed_roles=['AllRole', 'LogUser'])
+@role_required(allowed_roles=['Super','RoleDigital'])
 def export_technical_logs_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="technical_support_logs.csv"'
@@ -110,7 +110,7 @@ def export_technical_logs_csv(request):
 
 
 @login_required
-@role_required(allowed_roles=['AllRole'])
+@role_required(allowed_roles=['Super'])
 def tasklog_list(request):
     selected_category = request.GET.get('category', 'Overall')
 
@@ -134,7 +134,7 @@ def redirect_to_overall(request):
 
 
 @login_required
-@role_required(allowed_roles=['AllRole'])
+@role_required(allowed_roles=['Super'])
 def serverip(request):
     serverips = ServerIp.objects.all().order_by('-id')
     # return JsonResponse({'serverips': list(serverips.values())})
@@ -149,7 +149,7 @@ def serverip(request):
 
 
 @login_required
-@role_required(allowed_roles=['AllRole'])
+@role_required(allowed_roles=['Super'])
 def export_serverdetails_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="serverdetails.csv"'
