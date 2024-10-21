@@ -12,6 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Get the URL from environment variables
 WHISTLE_BLOWER_URL = os.getenv('WHISTLE_BLOWER_URL')
+SMS_SYSTEM_URL = os.getenv('SMS_SYSTEM_URL')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

@@ -107,6 +107,7 @@ def portal(request):
         'show_popup': show_popup,
         'popup_image': popup_image,
         'WHISTLE_BLOWER_URL': settings.WHISTLE_BLOWER_URL,
+        'SMS_SYSTEM_URL': settings.SMS_SYSTEM_URL,
        # 'show_image': show_image
     })
 
