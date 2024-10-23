@@ -26,3 +26,11 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return self.department
+    
+class ManagerContact(models.Model):
+    branch = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
+    mobile_number = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f"{self.branch} - {self.region}"
