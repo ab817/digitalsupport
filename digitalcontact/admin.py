@@ -22,6 +22,7 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
 class ManagerContactAdmin(admin.ModelAdmin):
     list_display = ('branch', 'region', 'mobile_number')
+    search_fields = ('branch', 'region', 'mobile_number')
     change_list_template = "admin/contact_changelist.html"
 
     def get_urls(self):
@@ -63,9 +64,11 @@ class ManagerContactAdmin(admin.ModelAdmin):
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'mobile_number', 'email')
+    search_fields = ('code', 'name', 'mobile_number', 'email')
     change_list_template = "admin/contact_changelist.html"
 
     def get_urls(self):
+        
         urls = super().get_urls()
         custom_urls = [
             path('upload-csv/', self.admin_site.admin_view(self.upload_csv), name='upload_csv'),
