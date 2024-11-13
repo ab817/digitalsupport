@@ -3,32 +3,32 @@
 
 {% block content %}
 <div class="content-wrapper container">
-    <h2 class="contact-title">ADBL Personal Contact List</h2>
-    <form method="get" action="{% url 'contact_list' %}">
+    <h2 class="contact-title">ADBL Manager Contact List</h2>
+    <form method="get" action="{% url 'managercontact_list' %}">
         <div class="input-group mb-3">
             <input type="text" name="q" class="form-control" placeholder="Search by name or code" value="{{ query }}">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">Search</button>
-                <a href="{% url 'contact_list' %}" class="btn btn-secondary">Reset</a>
+                <a href="{% url 'managercontact_list' %}" class="btn btn-secondary">Reset</a>
             </div>
         </div>
     </form>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
+                <th>SN</th>
+                <th>Branch</th>
+                <th>Region</th>
                 <th>Mobile Number</th>
-                <th>Email</th>
             </tr>
         </thead>
         <tbody>
             {% for contact in page_obj %}
                 <tr>
-                    <td>{{ contact.code }}</td>
-                    <td>{{ contact.name }}</td>
+                    <td>{{ forloop.counter|add:page_obj.start_index|add:-1 }}</td>
+                    <td>{{ contact.branch }}</td>
+                    <td>{{ contact.region }}</td>
                     <td>{{ contact.mobile_number }}</td>
-                    <td>{{ contact.email }}</td>
                 </tr>
             {% endfor %}
         </tbody>
