@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -155,8 +154,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Sets the session to expire after 300 seconds (5 minutes)
-SESSION_COOKIE_AGE = 300  # 300 seconds = 5 minutes
+#SESSION_COOKIE_AGE = 300  # 300 seconds = 5 minutes
 
 # Optional settings for stricter control over session expiration
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Ends the session when the browser is closed
-SESSION_SAVE_EVERY_REQUEST = True  # Resets the session timeout on every request
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Ends the session when the browser is closed
+#SESSION_SAVE_EVERY_REQUEST = True  # Resets the session timeout on every request
