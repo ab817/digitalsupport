@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center" style="font-weight: bold;">NOTICES</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>S.N.</th>
+                <th>Notice Name</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for notice in page_obj %}
+            <tr>
+                <td>{{ notice.notice_number }}</td>
+                <td>{{ notice.notice_name }}</td>
+                <td><a href="{{ notice.link_to_download.url }}" target="_blank">Download</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock content %}

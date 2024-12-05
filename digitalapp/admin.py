@@ -3,7 +3,7 @@ from ckeditor.widgets import CKEditorWidget
 from django.contrib import admin
 from django.db import models
 
-from .models import Category, Comment, Post, PortalSetting, DigitalProduct
+from .models import Category, Comment, Post, PortalSetting, DigitalProduct, Notice
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -20,8 +20,12 @@ class CommentAdmin(admin.ModelAdmin):
 class PortalSettingAdmin(admin.ModelAdmin):
     pass
 
+class NoticeAdmin(admin.ModelAdmin):
+    readonly_fields = ('notice_number',)
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(PortalSetting, PortalSettingAdmin)
 admin.site.register(DigitalProduct)
+admin.site.register(Notice, NoticeAdmin)

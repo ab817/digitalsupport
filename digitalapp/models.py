@@ -1,7 +1,9 @@
 # blog/models.py
-
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
@@ -57,3 +59,30 @@ class DigitalProduct(models.Model):
 
     def __str__(self):
         return self.name
+
+class Notice(models.Model):
+    NOTICE_FORMATS = [
+        ('PDF', 'PDF'),
+        ('JPG', 'JPG'),
+        ('PNG', 'PNG'),
+    ]
+
+    notice_number = models.CharField(max_length=20, unique=True, blank=True)
+    notice_name = models.CharField(max_length=255)
+    link_to_download = models.FileField(upload_to='notices/', validators=[
+        FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'png'])
+    ])
+
+    def __str__(self):
+        return self.notice_name
+
+
+@receiver(pre_save, sender=Notice)
+def generate_notice_number(sender, instance, **kwargs):
+    if not instance.notice_number:
+        last_notice = Notice.objects.order_by('id').last()
+        if last_notice:
+            last_number = int(last_notice.notice_number[1:])
+            instance.notice_number = f"N{last_number + 1:04d}"
+        else:
+            instance.notice_number = "N0001"

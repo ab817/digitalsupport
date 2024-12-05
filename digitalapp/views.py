@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 #from django.views.decorators.csrf import csrf_exempt
 
-from .models import Post, Comment, Category, PortalSetting, Feedback, DigitalProduct
+from .models import Post, Comment, Category, PortalSetting, Feedback, DigitalProduct, Notice
 
 
 #@csrf_exempt
@@ -146,3 +146,9 @@ def digital_product_detail(request, product_id):
     product = get_object_or_404(DigitalProduct, id=product_id)
     return render(request, 'digitalproductdetail.html', {'product': product})
 
+def notices(request):
+    notice_list = Notice.objects.all().order_by('-id')
+    paginator = Paginator(notice_list, 10)  # Show 10 notices per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'notices.html', {'page_obj': page_obj})

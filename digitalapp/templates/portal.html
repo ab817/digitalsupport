@@ -198,15 +198,14 @@
             </div>
 
             <!-- Video card -->
-                    <div class="col-md-4">
-                        <div class="card" style="background-color: #eaf8f4; border-color: #00753a;">
-                            <h3>ADBL Smart+ Activate</h3>
-                            <video width="100%" height="200" controls muted loop>
-                                <source src="{% static 'images/activate.mp4' %}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
+                     <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/news.png' %}" alt="Whistle">
+                    <h3>Notices</h3>
+                    <p>This section provides all the departmental notices, announcements and important information.</p>
+                    <a href="{% url 'notices' %}" target="_blank">Go To Notices</a>
+                </div>
+            </div>
 
 
             <!-- NOTICE card -->
@@ -234,15 +233,18 @@
                         </div>
                     </div>
 
+                    <div class="col-md-4">
+                        <div class="card" style="background-color: #eaf8f4; border-color: #00753a;">
+                            <h3>ADBL Smart+ Activate</h3>
+                            <video width="100%" height="200" controls muted loop>
+                                <source src="{% static 'images/activate.mp4' %}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
 
-            <!-- NOTICE card -->
-            <div class="col-md-4">
-                <div class="card notice-card" style="background-color: #fecfd3; border-color: #ffeeba;">
-                    <h3>NOTICE</h3>
-                    <p>Mobile Banking ADBL Smart+ SMS-Based Activation Process</p>
-                    <a href="media/product_pdfs/manual_adbl.pdf" target="_blank">Download Manual</a>
-                </div>
-            </div>
+
+
         </div>
     </div>
 </section>
