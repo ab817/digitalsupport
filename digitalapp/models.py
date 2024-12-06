@@ -4,7 +4,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-
+import  datetime
 class Category(models.Model):
     name = models.CharField(max_length=30)
 
@@ -72,7 +72,7 @@ class Notice(models.Model):
     link_to_download = models.FileField(upload_to='notices/', validators=[
         FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'png'])
     ])
-
+    notice_date=models.DateField(default=datetime.date.today)
     def __str__(self):
         return self.notice_name
 

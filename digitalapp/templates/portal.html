@@ -172,19 +172,22 @@
             <div class="col-md-4">
                 <div class="card">
                     <img src="{% static 'images/manual.png' %}" alt="CONTACT">
-                    <h3>ADBL - Contact Information</h3>
+                    <h3>ADBL - Contact </h3>
                     <p>All Departmental, Sections and Staffs on a single page.</p>
                     <a href="{% url 'contact_cards' %}">Go To Contact Info</a>
                 </div>
             </div>
+
+
             <div class="col-md-4">
                 <div class="card">
-                    <img src="{% static 'images/faq.png' %}" alt="FAQ">
-                    <h3>Frequently Asked Questions</h3>
-                    <p>Branches can find answers to frequently asked questions and get help with common issues in Digital Products.</p>
-                    <a href="{% url 'blog_index' %}">Go to FAQ</a>
+                    <img src="{% static 'images/news.png' %}" alt="Whistle">
+                    <h3>Notices</h3>
+                    <p>This section provides all the departmental notices and announcements.</p>
+                    <a href="{% url 'notices' %}" target="_blank">Go To Notices</a>
                 </div>
             </div>
+
         </div>
 
         <div class="row mb-4">
@@ -197,13 +200,13 @@
                 </div>
             </div>
 
-            <!-- Video card -->
-                     <div class="col-md-4">
+            <!-- FAQ card -->
+             <div class="col-md-4">
                 <div class="card">
-                    <img src="{% static 'images/news.png' %}" alt="Whistle">
-                    <h3>Notices</h3>
-                    <p>This section provides all the departmental notices, announcements and important information.</p>
-                    <a href="{% url 'notices' %}" target="_blank">Go To Notices</a>
+                    <img src="{% static 'images/faq.png' %}" alt="FAQ">
+                    <h3>Frequently Asked Questions</h3>
+                    <p>Branches can find answers to frequently asked questions related to Digital Products.</p>
+                    <a href="{% url 'blog_index' %}">Go to FAQ</a>
                 </div>
             </div>
 
@@ -213,7 +216,7 @@
                 <div class="card">
                     <img src="{% static 'images/question.png' %}" alt="Whistle">
                     <h3>Whistle Blower</h3>
-                    <p>All staff members are encouraged to submit their grievances or suggestions.</p>
+                    <p>All staff members are encouraged to submit their grievances or suggestions. Your identity will remain undisclosed. </p>
                     <a href="http://whistleblower.adbl.gov.np" target="_blank">Go To Whistle Blower</a>
                 </div>
             </div>
@@ -242,9 +245,6 @@
                             </video>
                         </div>
                     </div>
-
-
-
         </div>
     </div>
 </section>

@@ -148,6 +148,7 @@ def digital_product_detail(request, product_id):
 
 def notices(request):
     notice_list = Notice.objects.all().order_by('-id')
+
     paginator = Paginator(notice_list, 10)  # Show 10 notices per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

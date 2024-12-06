@@ -8,6 +8,7 @@
             <tr>
                 <th>S.N.</th>
                 <th>Notice Name</th>
+                <th>Date</th>
                 <th>Download</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             <tr>
                 <td>{{ notice.notice_number }}</td>
                 <td>{{ notice.notice_name }}</td>
+                <td>{{ notice.notice_date }}</td>
                 <td><a href="{{ notice.link_to_download.url }}" target="_blank">Download</a></td>
             </tr>
             {% endfor %}
